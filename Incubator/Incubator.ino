@@ -1,12 +1,16 @@
 #include <LiquidCrystal_I2C.h>
 #include <LiquidCrystal.h>
 #include <DHT.h>
-DHT dht(4 , DHT11);
-#define DHTPIN 4
-#define DHTTYPE DHT11
 
-float h = dht.readHumidity();
-float t = dht.readTemperature();
+#define DHTPIN 4
+#define Type DHT11
+
+int sensePin = 4;
+DHT HT(sensePin,Type);
+float h;
+float t;
+float ttemp;
+float htemp;
 const int ok = A1;
 const int UP = A2;
 const int DOWN = A3;
@@ -50,94 +54,112 @@ void setup()
 
   lcd.begin();
   Serial.begin(9600);
-
+  HT.begin();
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Temperature &");
   lcd.setCursor(0, 1);
   lcd.print("Humidity ");
-  delay (3000);
+  delay (1000);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Controller For");
   lcd.setCursor(0, 1);
   lcd.print("Incubator");
-  delay (3000);
+  delay (1000);
   lcd.clear();
   Serial.println("  Temperature and Humidity Controller For Incubator");
 }
 void loop()
 {
-
-  if (SET == 0)
-  {
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Set Temperature:");
-    lcd.setCursor(0, 1);
-    //lcd.print(T_threshold);
-    lcd.print(" *C");
-    while (T_condition)
-    {
-      if (digitalRead(UP) == LOW)
-      {
-        //T_threshold = T_threshold + 1;
-        lcd.setCursor(0, 1);
-        //lcd.print(T_threshold);
-        lcd.print(" *C");
-        delay(200);
-      }
-      if (digitalRead(DOWN) == LOW)
-      {
-        //T_threshold = T_threshold - 1;
-        lcd.setCursor(0, 1);
-        //lcd.print(T_threshold);
-        lcd.print(" *C");
-        delay(200);
-      }
-      if (digitalRead(ok) == LOW)
-      {
-        delay(200);
-        T_condition = false;
-      }
+    //lcd.clear();
+//    lcd.setCursor(0, 0);
+//    lcd.print("Set Temperature:");
+//    lcd.setCursor(0, 1);
+    t = HT.readTemperature();
+    if(!isnan(t)){
+      ttemp = t;
+      Serial.println(t);
+      //lcd.print(t);
     }
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Set Humidity:");
-    lcd.setCursor(0, 1);
+    else{
+      Serial.println(ttemp);
+      //lcd.print(ttemp);
+    }
+    
+    //lcd.print(" *C");
+    delay(3000);
+//    while (T_condition)
+//    {
+//      if (digitalRead(UP) == LOW)
+//      {
+//        T_threshold_low = T_threshold_low + 1;
+//        lcd.setCursor(0, 1);
+//        lcd.print(T_threshold_low);
+//        lcd.print(" *C");
+//        delay(200);
+//      }
+//      if (digitalRead(DOWN) == LOW)
+//      {
+//        T_threshold_high = T_threshold_high - 1;
+//        lcd.setCursor(0, 1);
+//        lcd.print(T_threshold_high);
+//        lcd.print(" *C");
+//        delay(200);
+//      }
+//      if (digitalRead(ok) == LOW)
+//      {
+//        delay(200);
+//        T_condition = false;
+//      }
+//    }
+    //lcd.clear();
+//    lcd.setCursor(0, 0);
+//    lcd.print("Set Humidity:");
+//    lcd.setCursor(0, 1);
+    h = HT.readHumidity();
+    if(!isnan(h)){
+      htemp = h;
+      Serial.println(h);
+      //lcd.print(h);
+    }
+    else{
+      Serial.println(htemp);
+      //lcd.print(htemp);
+    }
     //lcd.print(H_threshold);
-    lcd.print("%");
-    delay(100);
-    while (H_condition)
-    {
-      if (digitalRead(UP) == LOW)
-      {
-        //H_threshold = H_threshold + 1;
-        lcd.setCursor(0, 1);
-        //lcd.print(H_threshold);
-        lcd.print("%");
-        delay(100);
-      }
-      if (digitalRead(DOWN) == LOW)
-      {
-        //H_threshold = H_threshold - 1;
-        lcd.setCursor(0, 1);
-        //lcd.print(H_threshold);
-        lcd.print("%");
-        delay(200);
-      }
-      if (digitalRead(ok) == LOW)
-      {
-        delay(100);
-        H_condition = false;
-      }
-    }
-    SET = 1;
-  }
+    //lcd.print("%");
+    delay(3000);
+//    while (H_condition)
+//    {
+//      if (digitalRead(UP) == LOW)
+//      {
+//        H_threshold_low = H_threshold_low + 1;
+//        lcd.setCursor(0, 1);
+//        lcd.print(H_threshold_low);
+//        lcd.print("%");
+//        delay(100);
+//      }
+//      if (digitalRead(DOWN) == LOW)
+//      {
+//        H_threshold_high = H_threshold_high - 1;
+//        lcd.setCursor(0, 1);
+//        lcd.print(H_threshold_high);
+//        lcd.print("%");
+//        delay(200);
+//      }
+//      if (digitalRead(ok) == LOW)
+//      {
+//        delay(100);
+//        H_condition = false;
+//      }
+//    }
+    //SET = 1;
+  
   ack = 0;
   int chk;
   //dht.read11(DHTPIN);
-  chk = dht.read(DHTPIN);    // READ DATA
+  chk = HT.read(DHTPIN);    // READ DATA
 
   Serial.print("DHT11, \t");
   Serial.print(t, 1);
@@ -154,10 +176,10 @@ void loop()
     lcd.setCursor(0, 1);
     lcd.print("Humidity:");
     lcd.print(h);
-    delay(500);
+    delay(3000);
     if (t >= T_threshold_high)
     {
-      delay(500);
+      delay(100);
       if (t >= T_threshold_high)
       {
         digitalWrite(bulb, LOW);
@@ -165,7 +187,7 @@ void loop()
     }
     if (h >= H_threshold_high)
     {
-      delay(500);
+      delay(100);
       if (h >= H_threshold_high)
       {
         digitalWrite(vap, HIGH);
@@ -173,7 +195,7 @@ void loop()
     }
     if (t < T_threshold_low)
     {
-      delay(500);
+      delay(100);
       if (t < T_threshold_low)
       {
         digitalWrite(bulb, HIGH);
@@ -181,7 +203,7 @@ void loop()
     }
     if (h < H_threshold_low)
     {
-      delay(500);
+      delay(100);
       if (h < H_threshold_low)
       {
         digitalWrite(vap, LOW);
@@ -198,5 +220,5 @@ void loop()
     digitalWrite(bulb, LOW);
     digitalWrite(vap, LOW);
   }
-  delay(500);
+  delay(100);
 }
