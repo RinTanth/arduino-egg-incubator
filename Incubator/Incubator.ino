@@ -30,8 +30,8 @@ int pos = 0;
 int sec = 0;
 int Min = 0;
 int hrs = 0;
-int T_threshold_high = 38;
-int T_threshold_low = 35;
+float T_threshold_high = 37.5;
+float T_threshold_low = 36.0;
 int H_threshold_high = 65;
 int H_threshold_low = 50;
 int SET = 0;
@@ -79,7 +79,7 @@ void loop()
     t = HT.readTemperature();
     if(!isnan(t)){
       ttemp = t;
-      Serial.println(t);
+      //Serial.println(t);
       //lcd.print(t);
     }
     else{
@@ -88,73 +88,26 @@ void loop()
     }
     
     //lcd.print(" *C");
-    delay(3000);
-//    while (T_condition)
-//    {
-//      if (digitalRead(UP) == LOW)
-//      {
-//        T_threshold_low = T_threshold_low + 1;
-//        lcd.setCursor(0, 1);
-//        lcd.print(T_threshold_low);
-//        lcd.print(" *C");
-//        delay(200);
-//      }
-//      if (digitalRead(DOWN) == LOW)
-//      {
-//        T_threshold_high = T_threshold_high - 1;
-//        lcd.setCursor(0, 1);
-//        lcd.print(T_threshold_high);
-//        lcd.print(" *C");
-//        delay(200);
-//      }
-//      if (digitalRead(ok) == LOW)
-//      {
-//        delay(200);
-//        T_condition = false;
-//      }
-//    }
-    //lcd.clear();
+    delay(2000);
+
+//    lcd.clear();
 //    lcd.setCursor(0, 0);
 //    lcd.print("Set Humidity:");
 //    lcd.setCursor(0, 1);
     h = HT.readHumidity();
     if(!isnan(h)){
       htemp = h;
-      Serial.println(h);
+      //Serial.println(h);
       //lcd.print(h);
     }
     else{
-      Serial.println(htemp);
+      //Serial.println(htemp);
       //lcd.print(htemp);
     }
     //lcd.print(H_threshold);
     //lcd.print("%");
-    delay(3000);
-//    while (H_condition)
-//    {
-//      if (digitalRead(UP) == LOW)
-//      {
-//        H_threshold_low = H_threshold_low + 1;
-//        lcd.setCursor(0, 1);
-//        lcd.print(H_threshold_low);
-//        lcd.print("%");
-//        delay(100);
-//      }
-//      if (digitalRead(DOWN) == LOW)
-//      {
-//        H_threshold_high = H_threshold_high - 1;
-//        lcd.setCursor(0, 1);
-//        lcd.print(H_threshold_high);
-//        lcd.print("%");
-//        delay(200);
-//      }
-//      if (digitalRead(ok) == LOW)
-//      {
-//        delay(100);
-//        H_condition = false;
-//      }
-//    }
-    //SET = 1;
+    delay(2000);
+
   
   ack = 0;
   int chk;
@@ -171,18 +124,21 @@ void loop()
   {
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("Temp:");
+    lcd.print("Tempurature:");
     lcd.print(t);
     lcd.setCursor(0, 1);
     lcd.print("Humidity:");
     lcd.print(h);
-    delay(3000);
+    delay(2000);
     if (t >= T_threshold_high)
     {
       delay(100);
       if (t >= T_threshold_high)
       {
-        digitalWrite(bulb, LOW);
+        digitalWrite(bulb, LOW);  
+        digitalWrite(vap, LOW); //i move fan here to 
+        Serial.println("Light off");
+        Serial.println("fan low");
       }
     }
     if (h >= H_threshold_high)
@@ -190,7 +146,7 @@ void loop()
       delay(100);
       if (h >= H_threshold_high)
       {
-        digitalWrite(vap, HIGH);
+        //digitalWrite(vap, HIGH);
       }
     }
     if (t < T_threshold_low)
@@ -199,6 +155,9 @@ void loop()
       if (t < T_threshold_low)
       {
         digitalWrite(bulb, HIGH);
+        digitalWrite(vap, HIGH); //i move fan here to check
+        Serial.println("Light on");
+        Serial.println("fan high");
       }
     }
     if (h < H_threshold_low)
@@ -206,7 +165,7 @@ void loop()
       delay(100);
       if (h < H_threshold_low)
       {
-        digitalWrite(vap, LOW);
+        //digitalWrite(vap, LOW);
       }
     }
   }
