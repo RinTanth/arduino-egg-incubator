@@ -10,7 +10,7 @@ Arduino project for making an egg incubator
 ## Material
 1) Arduino R3
 2) LCD Display
-3) 12V 1 Channel Relay Module
+3) 5V 1 Channel Relay Module
 4) Jumper Wire
 5) Power Adapter
 6) 2N2222 Transistor
