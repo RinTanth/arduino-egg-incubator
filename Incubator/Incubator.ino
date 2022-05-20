@@ -72,46 +72,27 @@ void setup()
 }
 void loop()
 {
-    //lcd.clear();
-//    lcd.setCursor(0, 0);
-//    lcd.print("Set Temperature:");
-//    lcd.setCursor(0, 1);
     t = HT.readTemperature();
     if(!isnan(t)){
       ttemp = t;
-      //Serial.println(t);
-      //lcd.print(t);
     }
     else{
       Serial.println(ttemp);
-      //lcd.print(ttemp);
     }
     
-    //lcd.print(" *C");
     delay(2000);
 
-//    lcd.clear();
-//    lcd.setCursor(0, 0);
-//    lcd.print("Set Humidity:");
-//    lcd.setCursor(0, 1);
     h = HT.readHumidity();
     if(!isnan(h)){
       htemp = h;
-      //Serial.println(h);
-      //lcd.print(h);
     }
     else{
-      //Serial.println(htemp);
-      //lcd.print(htemp);
     }
-    //lcd.print(H_threshold);
-    //lcd.print("%");
     delay(2000);
 
   
   ack = 0;
   int chk;
-  //dht.read11(DHTPIN);
   chk = HT.read(DHTPIN);    // READ DATA
 
   Serial.print("DHT11, \t");
