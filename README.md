@@ -18,5 +18,5 @@ Arduino project for making an egg incubator
 8) Cooling Fan
 9) Digital Temperature and Humidity Sensor
 
-## Diagram
+## Diagrams
 ![egg incubator diagram](https://user-images.githubusercontent.com/94290631/163345156-5c5f046d-eb49-4f19-9736-b692f397c763.png)
