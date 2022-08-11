@@ -1,5 +1,7 @@
 # arduino-egg-incubator
 Arduino project for making an egg incubator
+Please check our youtube video for this egg incubator project. There are some videos of eggs development.
+Youtube Link: https://youtu.be/GF8qXhsWFeI
 
 ## Egg Incubator
 - Monitor temperature and humidity for egg hatching
@@ -21,3 +23,7 @@ Arduino project for making an egg incubator
 ## Diagrams
 ![egg incubator diagram](https://user-images.githubusercontent.com/94290631/163345156-5c5f046d-eb49-4f19-9736-b692f397c763.png)
 ![incubator circuit diagram](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/incubator-circuit-diagram.png)
+
+## Egg Development
+
+
