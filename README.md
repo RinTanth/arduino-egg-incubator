@@ -25,5 +25,8 @@ Youtube Link: https://youtu.be/GF8qXhsWFeI
 ![incubator circuit diagram](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/incubator-circuit-diagram.png)
 
 ## Egg Development
-
-
+![egg development1](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/Egg-Development1.PNG)
+![egg development2](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/Egg-Development2.PNG)
+![egg development3](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/Egg-Development3.PNG)
+![egg development4](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/Egg-Development4.PNG)
+![egg development5](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/Egg-Development5.PNG)
