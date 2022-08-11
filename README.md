@@ -38,8 +38,8 @@ Youtube Link: https://youtu.be/GF8qXhsWFeI
 
 ## Result
 ![uno1](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno1.png)
-![uno2](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno2.png)
-![uno3](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno3.png)
-![uno4](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno4.png)
-![uno5](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno5.png)
-![uno6](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno6.png)
+![uno2](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno2.jpg)
+![uno3](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno3.jpg)
+![uno4](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno4.jpg)
+![uno5](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno5.jpg)
+![uno6](https://github.com/RinTanth/arduino-egg-incubator/blob/main/Images/uno6.jpg)
